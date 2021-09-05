@@ -16,7 +16,7 @@
    
     <button v-on:click="openModal" class="button">開く</button>
     <template>
-    <open-modal v-show="showContent" v-on:click="showContent = false"></open-modal>
+    <open-modal v-show="showContent" v-on:close="showContent = false"></open-modal>
   </template>
 
   </div>
@@ -43,10 +43,11 @@
     Vue.component('openModal',{
       template:`
       // 呼び出したい中身のhtml 
-  <div class="modal-all">
+      
+  <div class="modal-all" v-on:click.self="$emit('close')">
     <div class="modal-body">
       <h2>モーダルウィンドウ</h2>
-      <button v-on:click="$emit('click')" class="close-btn">閉じる</button>
+      <button v-on:click="$emit('close')" class="close-btn">閉じる</button>
     </div>
     `,
     });
